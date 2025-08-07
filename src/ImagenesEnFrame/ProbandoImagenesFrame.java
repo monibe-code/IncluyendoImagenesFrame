@@ -33,7 +33,7 @@ class LaminaConImagen extends JPanel{
 		super.paintComponents(g);
 		
 		//ponemos una imagen
-		File miimagen= new File("src/ImagenesEnFrame/tango.png");
+		File miimagen= new File("src/ImagenesEnFrame/bola.gif");
 		try {
 		imagen = ImageIO.read(miimagen);
 		}
@@ -41,16 +41,15 @@ class LaminaConImagen extends JPanel{
 			System.out.println("La imagen no ha podido encontrarse");
 		}
 		
-		g.drawImage(imagen, 5, 20, null);
+		int anchuraImagen= imagen.getWidth(this);
+		int alturaImagen = imagen.getHeight(this);
+		g.drawImage(imagen, 0, 0, null);
 		
-		//escribimos un texto
-		Graphics2D g2= (Graphics2D) g;
-		
-		
-		g2.setFont(new Font("Calibri", Font.BOLD, 20));
-		g2.setColor(Color.GREEN.darker());
-		g2.drawString("TANGO", 320, 15);
-		
+		for(int i=0; i<200; i++) {
+			for(int j=0; j<150; j++) {
+				g.copyArea(0, 0, anchuraImagen, alturaImagen, i*anchuraImagen, j*alturaImagen);
+			}
+		}
 		
 	}
 	
