@@ -29,17 +29,18 @@ class MarcoImagen extends JFrame{
 
 class LaminaConImagen extends JPanel{
 	
+	public LaminaConImagen() {
+		try {
+			imagen = ImageIO.read(new File("src/ImagenesEnFrame/bola.gif"));
+			}
+			catch (IOException e) {
+				System.out.println("La imagen no ha podido encontrarse");
+			}
+		
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
-		
-		//ponemos una imagen
-		File miimagen= new File("src/ImagenesEnFrame/bola.gif");
-		try {
-		imagen = ImageIO.read(miimagen);
-		}
-		catch (IOException e) {
-			System.out.println("La imagen no ha podido encontrarse");
-		}
 		
 		int anchuraImagen= imagen.getWidth(this);
 		int alturaImagen = imagen.getHeight(this);
@@ -47,7 +48,9 @@ class LaminaConImagen extends JPanel{
 		
 		for(int i=0; i<200; i++) {
 			for(int j=0; j<150; j++) {
+				if(i+j>0)
 				g.copyArea(0, 0, anchuraImagen, alturaImagen, i*anchuraImagen, j*alturaImagen);
+				
 			}
 		}
 		
